@@ -1,0 +1,77 @@
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>inbox</title>
+    <style>
+        table, th, td {
+           border: 1px solid black;
+        }
+     </style>
+</head>
+<body>
+    {% if user.is_authenticated %}
+    <h2>hello, {{user.username}}</h2>
+    <a href="logout">
+        <button>Logout</button></a>
+    <div>
+        <br>
+    </div>
+    <div>
+        <a href="compose">
+            <button>
+                Compose a mail
+            </button>
+        </a>
+        <a href="sent">
+            <button>
+                Sent mails
+            </button>
+        </a>
+        
+    </div>
+    <div>
+        <br>
+        <h3>Received Mails</h3>
+        </a>
+    </div> 
+    {% for mail in receive_mails %}
+    <div>
+        {{mail}}
+        <br>
+    </div>
+    {% endfor %}
+    <br>
+    <div>
+        <table>
+            <tr>
+                <th> Time</th>
+                <th>From User</th>
+                <th>Subject</th>
+                <th>Body of the mail</th>
+                <th>Delete</th>
+            </tr>
+            
+            {% for x in rm %}
+            <tr>
+                {% for i in x %}
+                <th> {{ i }} </th>
+                {% endfor %}
+                <th>
+                    <button>
+                        Delete
+                    </button>
+                </th>
+            </tr>
+            {% endfor %}
+            
+        </table>
+    </div>
+    {{rm2}}
+    {% else %}
+    <h2>You are not logged in</h2>
+    {% endif %}
+    
+</body>
+</html>
